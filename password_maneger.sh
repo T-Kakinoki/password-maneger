@@ -21,11 +21,14 @@ echo "次の選択肢から入力してください(Add Password/Get Password/Ex
 #get password 入力時
  "Get Password")
   echo "サービス名を入力してください："
+  read service_name
+  if [ -z "$password" ]; then
 ## サービス名が保存されていなかった場合
    echo "そのサービスは登録されていません。"
 ## サービス名が保存されていた場合
-   echo "サービス名："
-   echo "ユーザー名："
+  else
+   echo "サービス名：$service_name"
+   echo "ユーザー名：echo $(grep "^$service_name:" password-store.txt | cut -d: -f2)"
    echo "パスワード："
    ;;
 #Exit入力時
