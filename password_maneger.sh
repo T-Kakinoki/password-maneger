@@ -2,11 +2,11 @@
 #起動時
 echo "パスワードマネージャーへようこそ！"
 echo "次の選択肢から入力してください(Add Password/Get Password/Exit)："
- read choices
+read choices
+#選択肢による処理分岐
 #Add password 入力時
- case $choices in
+case $choices in
  "Add Password")
-  echo "パスワードマネージャーへようこそ！"
   echo "サービス名を入力してください："
   read service_name
   echo "ユーザー名を入力してください："
@@ -22,14 +22,18 @@ echo "次の選択肢から入力してください(Add Password/Get Password/Ex
  "Get Password")
   echo "サービス名を入力してください："
   read service_name
+  #パスワードの取得
+  password=$(grep "^$service_name:" password-store.txt | cut -d: -f3)
   if [ -z "$password" ]; then
 ## サービス名が保存されていなかった場合
    echo "そのサービスは登録されていません。"
 ## サービス名が保存されていた場合
   else
+   user_name=$(grep "^$service_name:" password-store.txt | cut -d: -f2)
    echo "サービス名：$service_name"
-   echo "ユーザー名：echo $(grep "^$service_name:" password-store.txt | cut -d: -f2)"
-   echo "パスワード："
+   echo "ユーザー名：$user_name"
+   echo "パスワード：$password"
+   fi
    ;;
 #Exit入力時
  "Exit")
