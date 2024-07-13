@@ -8,12 +8,36 @@ while true; do
 #Add password 入力時
  case $choices in
   "Add Password")
-   echo "サービス名を入力してください："
-   read service_name
-   echo "ユーザー名を入力してください："
-   read user_name
+#サービス名登録  
+   while true; do
+    echo "サービス名を入力してください："
+    read service_name
+    if [ -n "$service_name" ]; then
+     break
+    else
+     echo "エラー：サービス名は必須です。再入力してください。"
+    fi
+   done
+#ユーザー名入力   
+   while true; do
+    echo "ユーザー名を入力してください："
+    read user_name
+    if [ -n "$user_name" ]; then
+     break
+    else
+     echo "エラー：ユーザー名は必須です。再入力してください。"
+    fi
+   done
+#パスワード入力
+   while true; do
    echo "パスワードを入力してください："
    read -s password
+   if [ -n "$password" ]; then
+     break
+    else
+     echo "エラー：パスワードは必須です。再入力してください。"
+    fi
+   done
 #入力が完了した場合
    echo "パスワードの追加は成功しました。"  
 #入力されたパスワードの保存
