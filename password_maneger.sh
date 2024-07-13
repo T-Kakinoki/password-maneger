@@ -13,7 +13,7 @@ while true; do
    echo "ユーザー名を入力してください："
    read user_name
    echo "パスワードを入力してください："
-   read password
+   read -s password
 #入力が完了した場合
    echo "パスワードの追加は成功しました。"  
 #入力されたパスワードの保存
