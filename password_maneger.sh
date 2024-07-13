@@ -1,4 +1,6 @@
 #!/bin/bash
+# nocasematchの有効化
+shopt -s nocasematch
 #起動時
 echo "パスワードマネージャーへようこそ！"
 while true; do
@@ -7,7 +9,7 @@ while true; do
 #選択肢による処理分岐
 #Add password 入力時
  case $choices in
-  "Add Password")
+  "add password")
 #サービス名登録  
    while true; do
     echo "サービス名を入力してください："
@@ -59,7 +61,7 @@ while true; do
    echo "パスワードの追加は成功しました。"  
    ;;
 #get password 入力時
-  "Get Password")
+  "get password")
    echo "サービス名を入力してください："
    read service_name
 #暗号化ファイルを複合化
@@ -80,7 +82,7 @@ while true; do
     rm password-store.txt    
     ;;
 #Exit入力時
-  "Exit")
+  "exit")
     echo "Thank you!"
     break
     ;;
@@ -90,3 +92,5 @@ while true; do
     ;;
  esac
 done
+#nocasematchの無効化
+shopt -u nocasematch
